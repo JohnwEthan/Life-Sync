@@ -13,6 +13,12 @@ export enum GoalType {
   METRIC = 'metric' 
 }
 
+export enum GoalSource {
+  APPLE_HEALTH = 'Apple Health',
+  GARMIN = 'Garmin',
+  MANUAL = 'Manual check-in'
+}
+
 export interface Goal {
   id: string;
   title: string;
@@ -23,36 +29,45 @@ export interface Goal {
   current: number;
   icon: string;
   isAuto?: boolean;
+  streak?: number;
+  order: number;
+  note?: string;
+  source?: GoalSource;
+  lastUpdated?: string;
 }
 
 export interface UserProfile {
   name: string;
-  height?: number; // cm
-  weight?: number; // kg
+  height?: number; 
+  weight?: number; 
   weightGoal?: number;
-  birthDate?: string;
   units: 'metric' | 'imperial';
+  lastSync?: string;
 }
 
 export interface WeeklyReview {
   id: string;
   date: string;
   reflection: string;
-  focusDomain: GoalDomain;
+  highlight: string;
   completedAt: string;
 }
 
-export interface DailyCheckIn {
-  date: string; // YYYY-MM-DD
-  goalId: string;
-  value: number;
-  note?: string;
+export interface AppSettings {
+  notifications: {
+    morningEnabled: boolean;
+    morningTime: string;
+    eveningEnabled: boolean;
+    eveningTime: string;
+  };
+  darkMode: 'light' | 'dark' | 'system';
+  isHealthConnected: boolean;
+  isGarminEnhanced: boolean;
 }
 
 export interface AppData {
   goals: Goal[];
   profile: UserProfile;
-  checkIns: DailyCheckIn[];
   reviews: WeeklyReview[];
-  lastSync: string;
+  settings: AppSettings;
 }
