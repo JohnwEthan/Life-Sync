@@ -1,0 +1,7 @@
+{
+  "name": "LifeSync",
+  "description": "A holistic, privacy-first habit and wellness tracker designed with Apple-caliber aesthetics, integrating physical, mental, spiritual, and financial dimensions.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
